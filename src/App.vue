@@ -11,7 +11,20 @@
 import TheHeader from '@/components/layout/TheHeader';
 export default {
   name: 'App',
-  components: { TheHeader }
+  components: { TheHeader },
+  computed: {
+
+  },
+  created() {
+    return this.$store.dispatch('tryLogin');
+  },
+  watch: {
+    didAutoLogout(curValue, oldValue) {
+      if(curValue && curValue !== oldValue) {
+        this.$router.replace('/coaches');
+      }
+    }
+  }
 };
 </script>
 
